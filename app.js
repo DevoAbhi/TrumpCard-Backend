@@ -12,6 +12,7 @@ const app = express();
 
 // Routes imports
 const scrapRoute = require('./routes/webScraping');
+const cardRoutes = require('./routes/card');
 
 
 app.use(bodyParser.json());
@@ -28,6 +29,8 @@ app.use((req, res, next) => {
     next();
 });
 app.use(scrapRoute);
+app.use(cardRoutes);
+
 
 
 
