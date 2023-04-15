@@ -24,3 +24,11 @@ const UserSchema = new Schema({
         }
     ]
 })
+
+UserSchema.method.addCard = (cardName) => {
+    this.cardCollection.push({ cardName });
+    return this.save();
+}
+
+
+module.exports = mongoose.model('User', UserSchema);

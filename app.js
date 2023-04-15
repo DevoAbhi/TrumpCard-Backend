@@ -11,6 +11,7 @@ const MONGODB_URI = "mongodb+srv://abhinab:OPlg3nWeW7MILxIA@trumpcard.rnsznsz.mo
 const app = express();
 
 // Routes imports
+const scrapRoute = require('./routes/webScraping');
 
 
 app.use(bodyParser.json());
@@ -26,7 +27,7 @@ app.use((req, res, next) => {
 
     next();
 });
-// app.use(usersRoute)
+app.use(scrapRoute);
 
 
 
