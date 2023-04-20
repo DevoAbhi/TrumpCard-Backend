@@ -1,6 +1,6 @@
-const app = require("./app");
-const debug = require("debug")("node-angular");
-const http = require("http");
+import app from './app.js'
+// import debug from 'debug''node-angular';
+import http from 'http';
 
 
 const normalizePort = val => {
@@ -41,7 +41,7 @@ const onError = error => {
 const onListening = () => {
   const addr = server.address();
   const bind = typeof port === "string" ? "pipe " + port : "port " + port;
-  debug("Listening on " + bind);
+  // debug("Listening on " + bind);
 };
 
 const port = normalizePort(process.env.PORT || "3001");
