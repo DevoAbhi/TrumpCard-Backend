@@ -1,23 +1,26 @@
-const path = require('path');
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 
 // Requiring dependancies
-const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+import express from 'express';
+import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
 
 
 const MONGODB_URI = "mongodb+srv://abhinab:OPlg3nWeW7MILxIA@trumpcard.rnsznsz.mongodb.net/trumpcardsdb"
 
 const app = express();
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Routes imports
-const scrapRoute = require('./routes/webScraping');
-const cardRoutes = require('./routes/card');
+import scrapRoutes from './routes/webScraping.js';
+import cardRoutes from './routes/card.js';
+import authRoutes from './routes/auth.js';
 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(join(__dirname, 'public')));
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -28,8 +31,9 @@ app.use((req, res, next) => {
 
     next();
 });
-app.use(scrapRoute);
+app.use(scrapRoutes);
 app.use(cardRoutes);
+app.use('/user', authRoutes);
 
 
 
@@ -48,4 +52,4 @@ mongoose.connect(MONGODB_URI,
   })
 
 
-module.exports = app;
+  export default app;
