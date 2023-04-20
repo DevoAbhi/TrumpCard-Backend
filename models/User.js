@@ -1,11 +1,10 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
     email: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     password: {
         type: String,
@@ -31,4 +30,4 @@ UserSchema.method.addCard = (cardName) => {
 }
 
 
-module.exports = mongoose.model('User', UserSchema);
+export default mongoose.model('User', UserSchema);

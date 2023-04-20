@@ -1,6 +1,6 @@
-const Card = require("../models/Card");
+import Card from "../models/Card.js";
 
-exports.postCardDeckHandler = async (req, res, next) => {
+export const postCardDeckHandler = async (req, res, next) => {
     const cardType = req.body.cardType;
     const player1Deck = [];
     const player2Deck = [];

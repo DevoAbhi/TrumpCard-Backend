@@ -1,9 +1,9 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 
-const cardController = require('../controllers/card');
+import {postCardDeckHandler} from '../controllers/card.js';
 
-router.post('/get-card', cardController.postCardDeckHandler);
+router.post('/get-card', postCardDeckHandler);
 
-module.exports = router;
+export default router;
 

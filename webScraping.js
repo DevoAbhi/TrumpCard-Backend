@@ -1,5 +1,5 @@
-const axios = require('axios');
-const Card = require('./models/Card');
+import axios from 'axios';
+import Card from './models/Card';
 
 const url = "https://pokeapi.co/api/v2/pokemon/";
 
@@ -15,7 +15,7 @@ let i = 0;
 
 
         const pokemon = res.data;
-        
+
         console.log(pokemon.results[0].image.url);
         console.log(pokemon.results[0].powerstats);
 

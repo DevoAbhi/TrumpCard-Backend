@@ -1,7 +1,7 @@
-const axios = require('axios');
-const Card = require('../models/Card');
+import axios from 'axios';
+import Card from '../models/Card.js';
 
-exports.postScraping = async (req, res, next) => {
+export const postScraping = async (req, res, next) => {
     try {
 
         const url = "https://www.superheroapi.com/api.php/906299160624055/search/";
@@ -101,7 +101,7 @@ exports.postScraping = async (req, res, next) => {
 
 
 
-            
+
 
 
         }

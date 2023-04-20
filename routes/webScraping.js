@@ -1,9 +1,8 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
+import {postScraping} from '../controllers/webScraping.js'
 
-const webScrapingController = require('../controllers/webScraping')
+router.post('/scrap', postScraping);
 
-router.post('/scrap', webScrapingController.postScraping);
-
-module.exports = router;
+export default router;
 
