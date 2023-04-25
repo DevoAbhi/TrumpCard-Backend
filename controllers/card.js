@@ -3,15 +3,19 @@ import Card from "../models/Card.js";
 export const postCardDeckHandler = async (req, res, next) => {
     const cardType = req.body.cardType;
 
-
     const { player1Deck, player2Deck } = await allotCards(cardType);
 
     if (player1Deck.length === 0 || player2Deck.length === 0) {
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
             message: "kuch galti ho gaya"
         })
     }
+
+    console.log("Players' deck of card sent.");
+    console.log("Player1 cards -> ", player1Deck);
+    console.log("Player2 cards -> ", player2Deck);
+
 
     return res.status(200).json({
         message: "ho gaya bhai, maje kar",
@@ -31,44 +35,42 @@ const shuffleArray = (arr) => {
 
 const allotCards = async (cardType) => {
     try {
+        console.log(cardType);
         let player1Deck = [];
         let player2Deck = [];
-        const cardDeck = await Card.find({ cardType }).lean();
+        let cardDeck = [];
+        try {
+            cardDeck = await Card.find({ cardType }).lean();
+        } catch (error) {
+            console.log(error);
+        }
+
         shuffleArray(cardDeck);
         const n = cardDeck.length;
 
         for (let i = 0; i < n / 2; i++) {
             const cardItem = cardDeck[i];
-            const card = {};
-            card.name = cardItem.cardName;
-            card.imageUrl = cardItem.imageUrl;
-            card.attributes = cardItem.attributes;
+            // const card = {};
+            // card.name = cardItem.cardName;
+            // card.imageUrl = cardItem.imageUrl;
+            // card.attributes = cardItem.attributes;
 
-            player1Deck.push(card);
+            player1Deck.push(cardItem);
         }
         for (let i = n / 2; i < n; i++) {
             const cardItem = cardDeck[i];
-            const card = {};
-            card.name = cardItem.cardName;
-            card.imageUrl = cardItem.imageUrl;
-            card.attributes = cardItem.attributes;
+            // const card = {};
+            // card.name = cardItem.cardName;
+            // card.imageUrl = cardItem.imageUrl;
+            // card.attributes = cardItem.attributes;
 
-            player2Deck.push(card);
+            player2Deck.push(cardItem);
         }
 
-        console.log(player1Deck.length);
-        console.log(player2Deck.length);
-
         return { player1Deck, player2Deck };
-
-
-
     }
     catch (err) {
-        return res.status(500).json({
-            message: "card nikal nahi paya bhai, fir se karo",
-            error: err
-        })
+        console.log(err);
     }
 
 }
