@@ -46,6 +46,9 @@ export const postSignUp = async (req, res, next) => {
                 },
                 {
                     cardType: "avengers"
+                },
+                {
+                    cardType: "frozen"
                 }
             ]
         });

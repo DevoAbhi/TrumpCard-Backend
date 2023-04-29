@@ -8,6 +8,7 @@ import mongoose from 'mongoose';
 
 
 const MONGODB_URI = "mongodb+srv://abhinab:OPlg3nWeW7MILxIA@trumpcard.rnsznsz.mongodb.net/trumpcardsdb"
+// const MONGODB_URI = "mongodb://abhinab:OPlg3nWeW7MILxIA@trumpcard.rnsznsz.mongodb.net/trumpcardsdb"
 
 const app = express();
 const __dirname = dirname(fileURLToPath(import.meta.url));
